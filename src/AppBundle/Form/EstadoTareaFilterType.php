@@ -9,25 +9,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type as Filters;
 
 
-class TareaFilterType extends AbstractType
+class EstadoTareaFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('id', Filters\NumberFilterType::class)
-            ->add('titulo', Filters\TextFilterType::class)
-            ->add('descripcion', Filters\TextFilterType::class)
+            ->add('nombre', Filters\TextFilterType::class)
             ->add('createdAt', Filters\DateTimeFilterType::class)
             ->add('updatedAt', Filters\DateTimeFilterType::class)
         
-            /*->add('userId', Filters\EntityFilterType::class, array(
-                    'class' => 'AppBundle\Entity\User',
-                    'choice_label' => 'id',
-            ))*/ 
-            ->add('estadoId', Filters\EntityFilterType::class, array(
-                    'class' => 'AppBundle\Entity\EstadoTarea',
-                    'choice_label' => 'nombre',
-            )) 
         ;
         $builder->setMethod("GET");
 
