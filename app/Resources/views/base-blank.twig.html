@@ -1,94 +1,86 @@
 {#% trans_default_domain 'FOSUserBundle' %#}
 <!DOCTYPE html>
 <html lang="es">
-<head>
+    <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  {# <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> #}
-  <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
-  <meta name="description" content="Cloud Shipping">
-  <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-<style>
-    .bodyBack{
-        background-image: url({{ asset('assets/img/index.jpg') }});
-        background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    }
-    </style>
-  <title>TODO</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {# <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> #}
+        <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
 
-  <!-- Icons -->
-  <link href="{{ asset('assets/vendors/css/font-awesome.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendors/css/simple-line-icons.min.css') }}" rel="stylesheet">
+        <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+        <style>
+            .bodyBack{
+                background-image: url({{ asset('assets/img/index.jpg') }});
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+        </style>
+        <title>TODO</title>
 
-  <!-- Main styles for this application -->
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        <!-- Icons -->
+        <link href="{{ asset('assets/vendors/css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendors/css/simple-line-icons.min.css') }}" rel="stylesheet">
 
-  <!-- Styles required by this views -->
-{% block stylesheets %}{% endblock %}
-</head>
+        <!-- Main styles for this application -->
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-<body class="app flex-row align-items-center bodyBack">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card-group">
-          <div class="card p-4">
-            <div class="card-body">
-                
-                <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-            <a href="{{ path('fos_user_security_login') }}" class="btn btn-info"><i class="fa fa-sign-in"></i> {{ 'layout.login2'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
+        <!-- Styles required by this views -->
+        {% block stylesheets %}{% endblock %}
+    </head>
 
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ type }}">
-                        {{ message }}
+    <body class="app flex-row align-items-center bodyBack">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card-group">
+                        <div class="card p-4">
+                            <div class="card-body">
+
+                                <div>
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                    {% else %}
+                                    <a href="{{ path('fos_user_security_login') }}" class="btn btn-info"><i class="fa fa-sign-in"></i> {{ 'layout.login2'|trans({}, 'FOSUserBundle') }}</a>
+                                    {% endif %}
+                                </div>
+
+                                {% if app.request.hasPreviousSession %}
+                                {% for type, messages in app.session.flashbag.all() %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{ type }}">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                                {% endfor %}
+                                {% endif %}
+
+
+
+
+                                {% block body %}
+                                {% endblock body %}
+
+                            </div>
+
+                        </div>
                     </div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
-                
-                
-                
-             
-                {% block body %}
-            {% endblock body %}
-                
-          </div>
-          
+                </div>
+            </div>
+
         </div>
-      </div>
-    </div>
-  </div>
-  
-  </div>
 
-  <!-- Bootstrap and necessary plugins -->
-  <script src="{{ asset('assets/vendors/js/jquery.min.js') }}"></script>
-  <script src="{{ asset('assets/vendors/js/popper.min.js') }}"></script>
-  <script src="{{ asset('assets/vendors/js/bootstrap.min.js') }}"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106925-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        <!-- Bootstrap and necessary plugins -->
+        <script src="{{ asset('assets/vendors/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/js/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/js/bootstrap.min.js') }}"></script>
+        {% block javascripts %}
+        {% endblock %}
 
-  gtag('config', 'UA-127106925-1');
-</script>
-  {% block javascripts %}
-  {% endblock %}
-  
-</body>
+    </body>
 </html>
