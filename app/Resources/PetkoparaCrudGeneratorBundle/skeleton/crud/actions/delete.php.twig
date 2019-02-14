@@ -1,0 +1,132 @@
+
+    /**
+     * Deletes a {{ entity }} entity.
+     *
+{% if 'annotation' == format %}
+     * @Route("/{id}", name="{{ route_name_prefix }}_delete")
+     * @Method("DELETE")
+{% endif %}
+     */
+    public function deleteAction(Request $request, {{ entity_class }} ${{ entity_singularized }}, TranslatorInterface $translator, AuthorizationCheckerInterface $authorizationChecker)
+    {
+        // revisamos roles
+        $access2 = $authorizationChecker->isGranted(new Expression(
+                'has_role("ROLE_{{ entity_singularized|upper }}_DELETE") or has_role("ROLE_{{ entity_singularized|upper }}_ALL")'
+        ));
+
+        if (!$access2) {
+            $html = $this->renderView('Exception/error-acceso.html.twig', array(
+            ));
+            $response = new Response($html, Response::HTTP_FORBIDDEN);
+            return $response;
+        }
+
+        if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        }
+
+        if (${{ entity_singularized }}->getRfcEmpresaAlta() == $user->getRfc()) {
+            //return new Response('tuyo');
+        } else {
+            //return new Response('no tuyo');
+            return $this->redirectToRoute('{{ route_name_prefix }}', []);
+        }
+        
+        $form = $this->createDeleteForm(${{ entity_singularized }});
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            // delete logico
+            ${{ entity_singularized }}->setDeleteStatus(0);
+            ${{ entity_singularized }}->setDeletedAt(new \DateTime());
+            ${{ entity_singularized }}->setUserDeleteId($user);
+            $em->persist(${{ entity_singularized }});
+            //$em->remove(${{ entity_singularized }});
+            $em->flush();
+            
+            // traduccion flash
+            $translated = $translator->trans('flash_mensaje.eliminado', array('%entity%' => '{{ entity }}'));
+            
+            $this->get('session')->getFlashBag()->add('success', $translated);
+        } else {
+            // traduccion flash
+            $translated = $translator->trans('flash_mensaje.problema_eliminar', array('%entity%' => '{{ entity }}'));
+            
+            $this->get('session')->getFlashBag()->add('error', $translated);
+        }
+        
+        return $this->redirectToRoute('{{ route_name_prefix }}');
+    }
+    
+    /**
+     * Creates a form to delete a {{ entity }} entity.
+     *
+     * @param {{ entity_class }} ${{ entity_singularized }} The {{ entity }} entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm({{ entity_class }} ${{ entity_singularized }})
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('{{ route_name_prefix }}_delete', array('id' => ${{ entity_singularized }}->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
+    }
+    
+    /**
+     * Delete {{ entity_class }} by id
+     *
+{% if 'annotation' == format %}
+     * @Route("/delete/{id}", name="{{ route_name_prefix }}_by_id_delete")
+     * @Method("GET")
+{% endif %}
+     */
+    public function deleteByIdAction({{ entity }} ${{ entity_singularized }}, TranslatorInterface $translator, AuthorizationCheckerInterface $authorizationChecker){
+        // revisamos roles
+        $access2 = $authorizationChecker->isGranted(new Expression(
+                'has_role("ROLE_{{ entity_singularized|upper }}_DELETE") or has_role("ROLE_{{ entity_singularized|upper }}_ALL")'
+        ));
+
+        if (!$access2) {
+            $html = $this->renderView('Exception/error-acceso.html.twig', array(
+            ));
+            $response = new Response($html, Response::HTTP_FORBIDDEN);
+            return $response;
+        }
+
+        if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        }
+
+        if (${{ entity_singularized }}->getRfcEmpresaAlta() == $user->getRfc()) {
+            //return new Response('tuyo');
+        } else {
+            //return new Response('no tuyo');
+            return $this->redirectToRoute('{{ route_name_prefix }}', []);
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        try {
+            // delete logico
+            ${{ entity_singularized }}->setDeleteStatus(0);
+            ${{ entity_singularized }}->setDeletedAt(new \DateTime());
+            ${{ entity_singularized }}->setUserDeleteId($user);
+            $em->persist(${{ entity_singularized }});
+            //$em->remove(${{ entity_singularized }});
+            $em->flush();
+            // traduccion flash
+            $translated = $translator->trans('flash_mensaje.eliminado', array('%entity%' => '{{ entity }}'));
+            $this->get('session')->getFlashBag()->add('success', $translated);
+        } catch (Exception $ex) {
+            // traduccion flash
+            $translated = $translator->trans('flash_mensaje.problema_eliminar', array('%entity%' => '{{ entity }}'));
+            $this->get('session')->getFlashBag()->add('error', $translated);
+        }
+
+        return $this->redirect($this->generateUrl('{{ route_name_prefix }}'));
+
+    }
+    

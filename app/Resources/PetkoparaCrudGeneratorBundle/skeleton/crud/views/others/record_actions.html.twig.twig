@@ -1,0 +1,32 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <br>
+    <div class="form-group">
+        <a class="btn btn-warning" href="{{ "{{ path('"~ route_name_prefix ~"') }}" }}">
+            <span class="fa fa-list" aria-hidden="true"></span>&nbsp;
+            {{ "{{ 'crudMensaje.Volver listado'|trans }}" }}
+        </a>
+        {% if ('edit' in actions) and (not hide_edit) %}
+            <a class="btn btn-primary" href="{{ "{{ path('"~ route_name_prefix ~"_edit', { 'id':  " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}">
+                <span class="fa fa-edit" aria-hidden="true"></span>&nbsp;
+                {{ "{{ 'crudMensaje.editar'|trans }}" }}
+            </a>
+        {% endif %}
+        {% if ('new' in actions) and (not hide_new) %}
+            <a class="btn btn-info" href="{{ "{{ path('"~ route_name_prefix ~"_new') }}" }}">
+                <span class="fa fa-plus" aria-hidden="true"></span>&nbsp;
+                {{ "{{ 'crudMensaje.nuevo'|trans }}" }}
+            </a>
+        {% endif %}
+        {% if ('delete' in actions) and (not hide_delete) %}
+            <form action="{{ "{{ path('"~ route_name_prefix ~"_delete', { 'id': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}" method="post" style="display: inline-block">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ '{{ form_widget(delete_form) }}' }}
+                <button class="btn btn-danger" type="submit" onclick="return confirm('{{ "{{ 'crudMensaje.eliminar'|trans }}" }}');">
+                    <span class="fa fa-remove" aria-hidden="true"></span>
+                    &nbsp;
+                    {{ "{{ 'crudMensaje.eliminar'|trans }}" }}
+                </button>
+            </form>
+        {% endif %}
+    </div>
+</div>

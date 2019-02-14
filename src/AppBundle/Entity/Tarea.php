@@ -210,4 +210,28 @@ class Tarea {
     {
         return $this->userId;
     }
+
+    /**
+     * Set estadoId
+     *
+     * @param \AppBundle\Entity\EstadoTarea $estadoId
+     *
+     * @return Tarea
+     */
+    public function setEstadoId(\AppBundle\Entity\EstadoTarea $estadoId = null)
+    {
+        $this->estadoId = $estadoId;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoId
+     *
+     * @return \AppBundle\Entity\EstadoTarea
+     */
+    public function getEstadoId()
+    {
+        return $this->estadoId;
+    }
 }

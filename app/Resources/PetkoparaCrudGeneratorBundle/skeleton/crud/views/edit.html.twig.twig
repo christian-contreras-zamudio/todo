@@ -1,0 +1,45 @@
+{{ "{% extends '"~  base_template  ~ "' %}" }}
+
+{{ "{% block title %}" }}
+{{ "{{ parent() }}" }} -  {{ "{{ 'crudMensaje.editar'|trans }}" }} {{ entity_singularized }}
+{{ "{% endblock %}" }}
+
+{{ "{% block body %}" }}
+
+<div id="top" class="row">
+    <div class="page-header">
+        <h2>{{ "{{ 'crudMensaje.editar'|trans }}" }}&nbsp;{{ entity_singularized }}&nbsp;<span class="fa fa-pencil" aria-hidden="true"></span></h2>
+    </div>
+</div>
+
+
+
+<div class="row">
+    {% include 'crud/views/others/flash_messages.html.twig.twig' %}
+
+    {{ "{% form_theme edit_form 'forms-layout/bootstrap_3_horizontal_layout.twig.html' %}" }}
+    {{ "{{ form_start(edit_form) }}" }}
+
+    {{ "{{ form_widget(edit_form) }}" }}
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <button type="submit" class="btn btn-success">
+            <span class="fa fa-refresh" aria-hidden="true"></span>&nbsp;{{ "{{ 'crudMensaje.actualizar'|trans }}" }}
+        </button>
+    </div>
+    {{ "{{ form_end(edit_form) }}" }}
+
+    <hr/>
+
+    {% set hide_edit, hide_delete, hide_new = true, false, false %}
+{% include 'crud/views/others/record_actions.html.twig.twig' %}
+</div>
+
+
+{{ "{% endblock %}" }}
+{{ "{% block javascripts %}" }}
+<script>
+// NOTA: revisar el id conicida
+$('#{{ entity_singularized }}').addClass('row');
+$('form[name="{{ entity_singularized }}"]').addClass('col-xs-12 col-sm-12 col-md-12 col-lg-12');
+</script>
+{{ "{% endblock %}" }}

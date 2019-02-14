@@ -1,0 +1,114 @@
+plantillabase:
+    Logout: Cerrar Sesion
+    Updates: Actualizaciones
+    Message: Mensajes
+
+terrestre:
+    terrestre: Transporte Terrestre
+    editar: Editar
+    detalle:
+        piezas: Piezas
+Logout: Cerrar Sesion
+
+menu:
+    aereo: Aereo
+    maritimo: Maritimo
+    terrestre: Terrestre
+    acondicionamiento: Acondicionamiento
+    servicio extraordinario: Servicio Extraordinario
+    cotizaciones: Cotizaciones
+    admin: Admin
+    finanzas: Finanzas
+    Secciones: Secciones
+idioma:
+    titulo: Escoger lenguaje
+    bandera: es
+    it: Italiano
+    en: Ingles
+    es: 'Español'
+
+botones:
+    nuevo: Nuevo
+    editar: Editar
+    eliminar: Eliminar
+    detalle: Detalle
+    status: Status
+    clonar: Clonar
+    pdf: PDF
+    cfdi: Facturacion
+    estimado: Costos
+    acciones: Acciones
+    mail: Mail
+    detalle mail proveedor: Detalle Mail Proveedor
+    detalle mail cliente: Detalle Mail Cliente
+    proveedor: Proveedor
+    cliente: Cliente
+    Tracking: Tracking
+    nuevoConsolidado: Nuevo Consolidado
+
+
+# mensaje actividad general
+actividadGeneral:
+    activo: Activo
+    cancelado: Cancelado
+    suspendido: Suspendido
+actividadMailEnvio:
+    enviado: Enviado
+    por_enviar: Por enviar
+    no_enviado: No enviado
+# crud consola
+crudMensaje:
+    no_hay_registros: 'No hay registros :('
+    nuevo: Nuevo
+    guardar: Guardar
+    guardarynuevo: Guardar y Nuevo
+    Volver listado: Volver Listado
+    editar: Editar
+    eliminar: Eliminar
+    detalle: Detalle
+    enviar: Enviar
+    actualizar: Actualizar
+    filtrar: Filtrar
+    reiniciar: Reiniciar
+    cancelar: Cancelar
+# flash
+flash_mensaje:
+    nuevo_creado: 'Nuevo %entity% fue creado con éxito.'
+    editado: 'Editado con éxito'
+    eliminado: 'El %entity% fue eliminado con éxito.'
+    eliminado_plural: '%entity% fue eliminado con éxito!'
+    problema_eliminar: 'Problema con la eliminación de %entity%.'
+    problema_eliminar_plural: 'Problema con la eliminación de %entity%'
+    usuario_cuenta_validacion: 'Usuario actualizado'
+    usuario_cuenta_actualizacion: 'Usuario %email% actualizado'
+Strname: Nombre
+pagos_actividad:
+    revision: Revision
+    pendiente_de_pagado: Pendiente de Pago
+    pagado: Pagado
+    credito: Credito
+operativo_actividad:
+    activo: Activo
+    cancelado: Cancelado
+    suspendido: Suspendido
+    cerrado: Cerrado
+# servicios extraordinarios
+servicioExtraordinario:
+    servicio_extraordinario: Servicios Extraordinarios
+# servicios extraordinarios
+acondicionamiento:
+    titulo: Acondicionamientos
+# aereo
+hawb:
+    titulo: HAWB
+
+# errores
+exceptions:
+    ups: 'Ups!'
+    acceso_denegado: 'Acceso denegado'
+    acceso_seccion: 'No tienes acceso a esta seccion'
+# tracking cliente
+tracking_cliente:
+    tracking: Rastreo
+    mensaje: Para ver el rastreo debes de tener un enlace
+    mensaje1: Accede a tu cuenta o pide el enlace para ver el rastreo

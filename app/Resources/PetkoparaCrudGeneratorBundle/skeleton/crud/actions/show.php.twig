@@ -1,0 +1,49 @@
+
+    /**
+     * Finds and displays a {{ entity }} entity.
+     *
+{% if 'annotation' == format %}
+     * @Route("/{id}", name="{{ route_name_prefix }}_show")
+     * @Method("GET")
+{% endif %}
+     */
+    public function showAction({{ entity_class }} ${{ entity_singularized }}/*, AuthorizationCheckerInterface $authorizationChecker*/)
+    {
+        // revisamos roles
+        /*$access2 = $authorizationChecker->isGranted(new Expression(
+                'has_role("ROLE_{{ entity_singularized|upper }}") or has_role("ROLE_{{ entity_singularized|upper }}_ALL")'
+        ));
+
+        if (!$access2) {
+            $html = $this->renderView('Exception/error-acceso.html.twig', array(
+            ));
+            $response = new Response($html, Response::HTTP_FORBIDDEN);
+            return $response;
+        }
+
+        if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        }
+
+        if (${{ entity_singularized }}->getRfcEmpresaAlta() == $user->getRfc()) {
+            //return new Response('tuyo');
+        } else {
+            //return new Response('no tuyo');
+            return $this->redirectToRoute('{{ route_name_prefix }}', []);
+        }*/
+{% if 'delete' in actions %}
+        $deleteForm = $this->createDeleteForm(${{ entity_singularized }});
+{% endif %}
+{% if bundle_views == false%}
+        return $this->render('{{ entity|lower|replace({'\\': '/'}) }}/show.html.twig', array(
+{%else%}
+        return $this->render('{{ bundle }}:{{ entity|replace({'\\': '/'}) }}:show.html.twig', array(
+{% endif %}
+            '{{ entity_singularized }}' => ${{ entity_singularized }},
+{% if 'delete' in actions %}
+            'delete_form' => $deleteForm->createView(),
+{% endif %}
+        ));
+    }
+    
+    

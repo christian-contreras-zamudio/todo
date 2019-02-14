@@ -1,0 +1,80 @@
+{% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %}
+
+{% block title %}
+{{ parent() }} - tarea
+{% endblock %}
+
+{% block body %}
+
+<div id="top" class="row">
+    <div class="page-header">
+        <h2>{{ 'crudMensaje.detalle'|trans }}&nbsp; tarea&nbsp;<span class="fa fa-eye" aria-hidden="true"></span> </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <p class="lead text-primary"><strong>Id</strong></p>
+        <p class="lead">
+            {{ tarea.id }}
+        </p>
+
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <p class="lead text-primary"><strong>Titulo</strong></p>
+        <p class="lead">
+            {{ tarea.titulo }}
+        </p>
+
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <p class="lead text-primary"><strong>Descripcion</strong></p>
+        <p class="lead">
+            {{ tarea.descripcion }}
+        </p>
+
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <p class="lead text-primary"><strong>Createdat</strong></p>
+        <p class="lead">
+            {% if tarea.createdAt %}{{ tarea.createdAt|date('Y-m-d H:i:s') }}{% endif %}
+        </p>
+
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <p class="lead text-primary"><strong>Updatedat</strong></p>
+        <p class="lead">
+            {% if tarea.updatedAt %}{{ tarea.updatedAt|date('Y-m-d H:i:s') }}{% endif %}
+        </p>
+
+    </div></div>
+
+<hr/>
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <br>
+    <div class="form-group">
+        <a class="btn btn-warning" href="{{ path('tarea') }}">
+            <span class="fa fa-list" aria-hidden="true"></span>&nbsp;
+            {{ 'crudMensaje.Volver listado'|trans }}
+        </a>
+                    <a class="btn btn-primary" href="{{ path('tarea_edit', { 'id':  tarea.id }) }}">
+                <span class="fa fa-edit" aria-hidden="true"></span>&nbsp;
+                {{ 'crudMensaje.editar'|trans }}
+            </a>
+                            <a class="btn btn-info" href="{{ path('tarea_new') }}">
+                <span class="fa fa-plus" aria-hidden="true"></span>&nbsp;
+                {{ 'crudMensaje.nuevo'|trans }}
+            </a>
+                            <form action="{{ path('tarea_delete', { 'id': tarea.id }) }}" method="post" style="display: inline-block">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'crudMensaje.eliminar'|trans }}');">
+                    <span class="fa fa-remove" aria-hidden="true"></span>
+                    &nbsp;
+                    {{ 'crudMensaje.eliminar'|trans }}
+                </button>
+            </form>
+            </div>
+</div>
+{% endblock %}

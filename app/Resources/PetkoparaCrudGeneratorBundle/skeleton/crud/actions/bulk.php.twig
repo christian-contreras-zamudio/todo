@@ -1,0 +1,67 @@
+
+    /**
+    * Bulk Action
+{% if 'annotation' == format %}
+    * @Route("/bulk-action/", name="{{ route_name_prefix }}_bulk_action")
+    * @Method("POST")
+{% endif %}
+    */
+    public function bulkAction(Request $request, TranslatorInterface $translator, AuthorizationCheckerInterface $authorizationChecker)
+    {
+        // revisamos roles
+        $access2 = $authorizationChecker->isGranted(new Expression(
+                'has_role("ROLE_{{ entity_singularized|upper }}_DELETE") or has_role("ROLE_{{ entity_singularized|upper }}_ALL")'
+        ));
+
+        if (!$access2) {
+            $html = $this->renderView('Exception/error-acceso.html.twig', array(
+            ));
+            $response = new Response($html, Response::HTTP_FORBIDDEN);
+            return $response;
+        }
+
+        if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        }
+        
+        $ids = $request->get("ids", array());
+        $action = $request->get("bulk_action", "delete");
+
+        if ($action == "delete") {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $repository = $em->getRepository('{{ bundle }}:{{ entity }}');
+
+                foreach ($ids as $id) {
+                    ${{ entity_singularized }} = $repository->find($id);
+                    
+                    if (${{ entity_singularized }}->getRfcEmpresaAlta() == $user->getRfc()) {
+                        //return new Response('tuyo');
+                    } else {
+                        //return new Response('no tuyo');
+                        return $this->redirectToRoute('{{ route_name_prefix }}', []);
+                    }
+
+                    // delete logico
+                    ${{ entity_singularized }}->setDeleteStatus(0);
+                    ${{ entity_singularized }}->setDeletedAt(new \DateTime());
+                    ${{ entity_singularized }}->setUserDeleteId($user);
+                    $em->persist(${{ entity_singularized }});
+                    //$em->remove(${{ entity_singularized }});
+                    $em->flush();
+                }
+                
+                // traduccion flash
+                $translated = $translator->trans('flash_mensaje.eliminado_plural', array('%entity%' => '{{ entity_pluralized }}'));
+                $this->get('session')->getFlashBag()->add('success', $translated);
+
+            } catch (Exception $ex) {
+                // traduccion flash
+                $translated = $translator->trans('flash_mensaje.problema_eliminar_plural', array('%entity%' => '{{ entity_pluralized }}'));
+                $this->get('session')->getFlashBag()->add('error', $translated);
+            }
+        }
+
+        return $this->redirect($this->generateUrl('{{ route_name_prefix }}'));
+    }
+    

@@ -1,0 +1,67 @@
+{% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'crudMensaje.nuevo'|trans }} tarea
+{% endblock %}
+
+{% block body %}
+
+<div id="top" class="row">
+    <div class="page-header">
+        <h2>{{ 'crudMensaje.nuevo'|trans }}&nbsp;tarea&nbsp;<span class="fa fa-plus-square" aria-hidden="true"></span> </h2>
+    </div>
+</div>
+    
+  
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <br>
+        {% for type, flashMessages in app.session.flashbag.all() %} 
+        {% for flashMessage in flashMessages %}
+        <div class="alert alert-{{ type }} alert-dismissible animated bounce">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ flashMessage|raw }}
+        </div>
+         {% endfor %} 
+         {% endfor %} 
+        <br>
+</div> 
+    {#% form_theme form 'forms-layout/bootstrap_3_horizontal_layout.twig.html' %#}
+    {{ form_start(form) }}
+    
+  
+    {{ form_widget(form) }}
+   
+        
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <br>
+        <button type="submit" name="submit" value="save" class="btn btn-success"> 
+            {{ 'crudMensaje.guardar'|trans }}&nbsp;<span class="fa fa-save" aria-hidden="true"></span>
+        </button>
+        <button type="submit" name="submit" value="saveAndAdd" class="btn btn-info"> 
+            {{ 'crudMensaje.guardarynuevo'|trans }}&nbsp;<span class="fa fa-plus-circle" aria-hidden="true"></span>
+        </button>
+    </div>
+
+
+    {{ form_end(form) }}
+
+    <hr/>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <br>
+    <div class="form-group">
+        <a class="btn btn-warning" href="{{ path('tarea') }}">
+            <span class="fa fa-list" aria-hidden="true"></span>&nbsp;
+            {{ 'crudMensaje.Volver listado'|trans }}
+        </a>
+                            </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+// NOTA: revisar el id conicida
+$('#tareas').addClass('row');
+</script>
+{% endblock %}

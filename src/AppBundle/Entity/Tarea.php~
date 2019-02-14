@@ -68,8 +68,8 @@ class Tarea {
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="estado_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="EstadoTarea")
+     * @ORM\JoinColumn(name="estado_id", referencedColumnName="id", nullable=true)
      */
     private $estadoId;
 
@@ -171,28 +171,7 @@ class Tarea {
         return $this->updatedAt;
     }
 
-    /**
-     * Set estadoId
-     *
-     * @param integer $estadoId
-     *
-     * @return Tarea
-     */
-    public function setEstadoId($estadoId) {
-        $this->estadoId = $estadoId;
-
-        return $this;
-    }
-
-    /**
-     * Get estadoId
-     *
-     * @return int
-     */
-    public function getEstadoId() {
-        return $this->estadoId;
-    }
-
+    
     /**
      * @ORM\PrePersist
      */
@@ -207,4 +186,28 @@ class Tarea {
         $this->updatedAt = new \DateTime();
     }
 
+
+    /**
+     * Set userId
+     *
+     * @param \AppBundle\Entity\User $userId
+     *
+     * @return Tarea
+     */
+    public function setUserId(\AppBundle\Entity\User $userId = null)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
 }

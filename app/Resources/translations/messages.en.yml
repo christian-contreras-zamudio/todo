@@ -1,0 +1,48 @@
+plantillabase:
+    Logout: 'Logout'
+    Updates: Updates
+    Message: Message
+
+terrestre:
+    terrestre: Ground Transportation
+    editar: Edit
+    detalle:
+        piezas: Pieces
+Logout: Logout
+
+menu:
+    aereo: Air
+    maritimo: Sea
+    terrestre: Ground
+    acondicionamiento: Acondicionamiento
+    servicio extraordinario: Servicio Extraordinario
+    cotizaciones: Cotizaciones
+    admin: Admin
+    finanzas: Finanzas
+    Secciones: Sections
+idioma:
+    titulo: Choose language
+    bandera: gb
+    it: Italian
+    en: English
+    es: 'Spanish'
+
+botones:
+    nuevo: New
+    editar: Edit
+    eliminar: Delete
+    detalle: Detail
+    status: Status
+    clonar: Clone
+    pdf: PDF
+    cfdi: Invoice
+    estimado: Costs
+    acciones: Actions
+    mail: Mail
+    detalle mail proveedor: Detail Mail Provider
+    detalle mail cliente: Detail Mail Customer
+    proveedor: Provider
+    cliente: Customer
+
+crudMensaje:
+    no_hay_registros: 'No hay registros :('

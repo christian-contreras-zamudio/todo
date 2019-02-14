@@ -1,0 +1,59 @@
+   
+
+<!-- FILTERING -->
+<div class="col-md-12">
+    <div  id="filters" class="collapse">
+
+        {{ "{% form_theme filterForm 'forms-layout/bootstrap_3_horizontal_layout.twig.html' %}" }}
+        <form class="well" action="{{ "{{ path('"~ route_name_prefix ~"') }}" }}" method="get" >
+            <div class="row">
+                {% for field, metadata in fields %}
+                    
+                    
+                    
+                    <div class="col-md-6">
+                        {{"{{ form_label(filterForm."~field~") }}"}}
+                        {{"{{ form_widget(filterForm."~field~") }}"}}
+                        {#{"{{ form_errors(filterForm."~field~") }}"}#}
+                    </div>
+
+                {% endfor %}
+                <div class="col-md-6">
+                    {{ "{{ form_rest(filterForm) }}" }}
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-warning" name="filter_action" value="filter"> <span class="fa fa-filter" aria-hidden="true"></span>&nbsp;{{ "{{ 'crudMensaje.filtrar'|trans }}" }}</button>
+                        <button type="submit" class="btn btn-default" name="filter_action" value="reset"><span class="fa fa-minus-circle " aria-hidden="true"></span>&nbsp;{{ "{{ 'crudMensaje.reiniciar'|trans }}" }}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- END FILTERING -->
+
+
+
+
+
+<div class="col-md-3 col-lg-4">
+
+    {% if 'new' in actions %}
+        <a class="btn btn-primary h3" href="{{ "{{ path('"~ route_name_prefix ~"_new') }}" }}" style="margin-bottom:10px">
+            <span class="fa fa-plus-circle" aria-hidden="true"></span>&nbsp;{{ "{{ 'crudMensaje.nuevo'|trans }}" }}
+        </a>
+    {% endif %}
+    
+    <a class="btn btn-info dropdown-toggle h3" data-toggle="collapse" data-target="#filters">
+        {{ "{{ 'crudMensaje.filtrar'|trans }}" }}&nbsp;<span class="caret"></span>
+    </a>
+    
+    
+</div>
+    
+    
+    
+<div class="col-md-3 col-lg-4 pull-left">
+    {% include 'crud/views/others/page_size.html.twig.twig' %}
+</div>

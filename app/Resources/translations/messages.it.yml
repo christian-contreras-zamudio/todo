@@ -1,0 +1,47 @@
+plantillabase:
+    Logout: 'Sessione Chiusa'
+    Updates: Aggiornare
+    Message: Messaggio
+
+terrestre:
+    terrestre: Trasporto via Terra
+    editar: Modifica
+    detalle:
+        piezas: Parti
+Logout: Sessione Chiusa
+
+menu:
+    aereo: Aria
+    maritimo: Maritimo
+    terrestre: Terra
+    acondicionamiento: Acondicionamiento
+    servicio extraordinario: Servicio Extraordinario
+    cotizaciones: Cotizaciones
+    admin: Admin
+    finanzas: Finanzas
+idioma:
+    titulo: Scegli la lingua
+    bandera: it
+    it: Italiano
+    en: Inglese
+    es: 'Spagnolo'
+
+botones:
+    nuevo: Nuovo
+    editar: Modifica
+    eliminar: Rimuovere
+    detalle: Dettaglio
+    status: Stato
+    clonar: Clone
+    pdf: PDF
+    cfdi: Fatturazione
+    estimado: Costi
+    acciones: azioni
+    mail: Posta
+    detalle mail proveedor: Dettaglio Posta Provider
+    detalle mail cliente: Dettaglio Posta Cliente
+    proveedor: Fornitore
+    cliente: Cliente
+
+crudMensaje:
+    no_hay_registros: 'No hay registros :('

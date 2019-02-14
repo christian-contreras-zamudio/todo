@@ -1,0 +1,53 @@
+{{ "{% extends '"~  base_template  ~ "' %}" }}
+
+{{ "{% block title %}" }}
+{{ "{{ parent() }}" }} - {{ "{{ 'crudMensaje.nuevo'|trans }}" }} {{ entity_singularized }}
+{{ "{% endblock %}" }}
+
+{{ "{% block body %}" }}
+
+<div id="top" class="row">
+    <div class="page-header">
+        <h2>{{ "{{ 'crudMensaje.nuevo'|trans }}" }}&nbsp;{{ entity_singularized }}&nbsp;<span class="fa fa-plus-square" aria-hidden="true"></span> </h2>
+    </div>
+</div>
+    
+  
+{#<div class="row">#}
+
+    {% include 'crud/views/others/flash_messages.html.twig.twig' %}
+ 
+    {{ "{% form_theme form 'forms-layout/bootstrap_3_horizontal_layout.twig.html' %}" }}
+    {{ "{{ form_start(form) }}" }}
+    
+  
+    {{ "{{ form_widget(form) }}" }}
+   
+        
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <br>
+        <button type="submit" name="submit" value="save" class="btn btn-success"> 
+            {{ "{{ 'crudMensaje.guardar'|trans }}" }}&nbsp;<span class="fa fa-save" aria-hidden="true"></span>
+        </button>
+        <button type="submit" name="submit" value="saveAndAdd" class="btn btn-info"> 
+            {{ "{{ 'crudMensaje.guardarynuevo'|trans }}" }}&nbsp;<span class="fa fa-plus-circle" aria-hidden="true"></span>
+        </button>
+    </div>
+
+
+    {{ "{{ form_end(form) }}" }}
+
+    <hr/>
+{% set hide_edit, hide_delete, hide_new = true, true, true %}
+{% include 'crud/views/others/record_actions.html.twig.twig' %}
+{#</div>#}
+
+
+{{ "{% endblock %}" }}
+
+{{ "{% block javascripts %}" }}
+<script>
+// NOTA: revisar el id conicida
+$('#{{ entity_singularized }}s').addClass('row');
+</script>
+{{ "{% endblock %}" }}
