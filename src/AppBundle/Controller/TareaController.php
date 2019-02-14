@@ -45,15 +45,15 @@ class TareaController extends Controller
             return $response;
         }
 
+        */
         if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        }*/
+        }
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('AppBundle:Tarea')->createQueryBuilder('e');
-        /*$queryBuilder
-                ->where('e.deleteStatus is null')
-                ->andWhere('e.rfcEmpresaAlta = :rfc')
-                ->setParameter('rfc', $user->getRfc());*/
+        $queryBuilder
+                ->where('e.userId = :userId')
+                ->setParameter('userId', $user->getId());
 
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
         list($tareas, $pagerHtml) = $this->paginator($queryBuilder, $request);
@@ -202,11 +202,10 @@ class TareaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /*if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
                 $user = $this->container->get('security.token_storage')->getToken()->getUser();
                 $tarea->setUserId($user);
-                $tarea->setRfcEmpresaAlta($user->getRfc());
-            }*/
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($tarea);
             $em->flush();
@@ -245,18 +244,18 @@ class TareaController extends Controller
             ));
             $response = new Response($html, Response::HTTP_FORBIDDEN);
             return $response;
-        }
+        }*/
 
         if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
         }
 
-        if ($tarea->getRfcEmpresaAlta() == $user->getRfc()) {
+        if ($tarea->getUserId()->getId() == $user->getId()) {
             //return new Response('tuyo');
         } else {
             //return new Response('no tuyo');
             return $this->redirectToRoute('tarea', []);
-        }*/
+        }
         $deleteForm = $this->createDeleteForm($tarea);
         return $this->render('tarea/show.html.twig', array(
             'tarea' => $tarea,
@@ -284,18 +283,18 @@ class TareaController extends Controller
             ));
             $response = new Response($html, Response::HTTP_FORBIDDEN);
             return $response;
-        }
+        }*/
 
         if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
         }
 
-        if ($tarea->getRfcEmpresaAlta() == $user->getRfc()) {
+        if ($tarea->getUserId()->getId() == $user->getId()) {
             //return new Response('tuyo');
         } else {
             //return new Response('no tuyo');
             return $this->redirectToRoute('tarea', []);
-        }*/
+        }
         $deleteForm = $this->createDeleteForm($tarea);
         $editForm = $this->createForm('AppBundle\Form\TareaType', $tarea);
         $editForm->handleRequest($request);
@@ -330,7 +329,7 @@ class TareaController extends Controller
     public function deleteAction(Request $request, Tarea $tarea, TranslatorInterface $translator, AuthorizationCheckerInterface $authorizationChecker)
     {
         // revisamos roles
-        $access2 = $authorizationChecker->isGranted(new Expression(
+        /*$access2 = $authorizationChecker->isGranted(new Expression(
                 'has_role("ROLE_TAREA_DELETE") or has_role("ROLE_TAREA_ALL")'
         ));
 
@@ -339,13 +338,13 @@ class TareaController extends Controller
             ));
             $response = new Response($html, Response::HTTP_FORBIDDEN);
             return $response;
-        }
+        }*/
 
         if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
         }
 
-        if ($tarea->getRfcEmpresaAlta() == $user->getRfc()) {
+        if ($tarea->getUserId()->getId() == $user->getId()) {
             //return new Response('tuyo');
         } else {
             //return new Response('no tuyo');
@@ -358,9 +357,9 @@ class TareaController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             // delete logico
-            $tarea->setDeleteStatus(0);
-            $tarea->setDeletedAt(new \DateTime());
-            $tarea->setUserDeleteId($user);
+            //$tarea->setDeleteStatus(0);
+            //$tarea->setDeletedAt(new \DateTime());
+            //$tarea->setUserDeleteId($user);
             $em->persist($tarea);
             //$em->remove($tarea);
             $em->flush();
@@ -403,7 +402,7 @@ class TareaController extends Controller
      */
     public function deleteByIdAction(Tarea $tarea, TranslatorInterface $translator, AuthorizationCheckerInterface $authorizationChecker){
         // revisamos roles
-        $access2 = $authorizationChecker->isGranted(new Expression(
+        /*$access2 = $authorizationChecker->isGranted(new Expression(
                 'has_role("ROLE_TAREA_DELETE") or has_role("ROLE_TAREA_ALL")'
         ));
 
@@ -412,13 +411,13 @@ class TareaController extends Controller
             ));
             $response = new Response($html, Response::HTTP_FORBIDDEN);
             return $response;
-        }
+        }*/
 
         if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
         }
 
-        if ($tarea->getRfcEmpresaAlta() == $user->getRfc()) {
+        if ($tarea->getUserId()->getId() == $user->getId()) {
             //return new Response('tuyo');
         } else {
             //return new Response('no tuyo');
@@ -429,9 +428,9 @@ class TareaController extends Controller
         
         try {
             // delete logico
-            $tarea->setDeleteStatus(0);
+            /*$tarea->setDeleteStatus(0);
             $tarea->setDeletedAt(new \DateTime());
-            $tarea->setUserDeleteId($user);
+            $tarea->setUserDeleteId($user);*/
             $em->persist($tarea);
             //$em->remove($tarea);
             $em->flush();
@@ -457,7 +456,7 @@ class TareaController extends Controller
     public function bulkAction(Request $request, TranslatorInterface $translator, AuthorizationCheckerInterface $authorizationChecker)
     {
         // revisamos roles
-        $access2 = $authorizationChecker->isGranted(new Expression(
+        /*$access2 = $authorizationChecker->isGranted(new Expression(
                 'has_role("ROLE_TAREA_DELETE") or has_role("ROLE_TAREA_ALL")'
         ));
 
@@ -466,7 +465,7 @@ class TareaController extends Controller
             ));
             $response = new Response($html, Response::HTTP_FORBIDDEN);
             return $response;
-        }
+        }*/
 
         if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
@@ -483,7 +482,7 @@ class TareaController extends Controller
                 foreach ($ids as $id) {
                     $tarea = $repository->find($id);
                     
-                    if ($tarea->getRfcEmpresaAlta() == $user->getRfc()) {
+                    if ($tarea->getUserId()->getId() == $user->getId()) {
                         //return new Response('tuyo');
                     } else {
                         //return new Response('no tuyo');
@@ -491,9 +490,9 @@ class TareaController extends Controller
                     }
 
                     // delete logico
-                    $tarea->setDeleteStatus(0);
+                    /*$tarea->setDeleteStatus(0);
                     $tarea->setDeletedAt(new \DateTime());
-                    $tarea->setUserDeleteId($user);
+                    $tarea->setUserDeleteId($user);*/
                     $em->persist($tarea);
                     //$em->remove($tarea);
                     $em->flush();
