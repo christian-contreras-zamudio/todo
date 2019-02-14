@@ -169,7 +169,20 @@
                                         <td>{{ tarea.descripcion }}</td>
                                         <td>{%- if tarea.createdAt %}{{ tarea.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                                         <td>{%- if tarea.updatedAt %}{{ tarea.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                        <td>{%- if tarea.estadoId %}{{ tarea.estadoId.nombre }}{% endif %}</td>
+                                        <td><span class="lead"><strong>
+                                            {%- if tarea.estadoId %}{{ tarea.estadoId.nombre }}{% endif %}</strong></span><br>
+                                                
+                                                {% if estados %}
+                                                    {%for e in estados %}
+                                                        
+                                                       {% if e.id != tarea.estadoId.id %} 
+                                                <a href="{{ path('estado_tarea_edit', {'id': tarea.id, 'estado': e.id}) }}" class="btn btn-primary">{{ e.nombre }}</a>
+                                                {% endif %}
+                                                
+                                                {% endfor %}
+                                                    {% endif %}
+                                            
+                                        </td>
 
                                         <td class="actions">
                                             <a  onclick="return confirm('{{ 'crudMensaje.eliminar'|trans }}?');" title="{{ 'crudMensaje.eliminar'|trans }}" class="btn btn-danger btn-sm" href="{{ path('tarea_by_id_delete', { 'id': tarea.id}) }}">

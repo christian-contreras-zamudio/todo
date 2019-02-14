@@ -59,12 +59,15 @@ class TareaController extends Controller
         list($tareas, $pagerHtml) = $this->paginator($queryBuilder, $request);
         
         $totalOfRecordsString = $this->getTotalOfRecordsString($queryBuilder, $request);
+        
+        $estado = $em->getRepository('AppBundle:EstadoTarea')->findAll();
 
         return $this->render('tarea/index.html.twig', array(
             'tareas' => $tareas,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
             'totalOfRecordsString' => $totalOfRecordsString,
+            'estados'=>$estado
 
         ));
     }
@@ -510,6 +513,61 @@ class TareaController extends Controller
         }
 
         return $this->redirect($this->generateUrl('tarea'));
+    }
+    
+    
+    /**
+     * Actualizar estado de tarea
+     *
+     * @Route("/estado/{id}/{estado}/edit", name="estado_tarea_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editEstadoAction(Request $request, $id, $estado, TranslatorInterface $translator/*, AuthorizationCheckerInterface $authorizationChecker*/)
+    {
+        // revisamos roles
+        /*$access2 = $authorizationChecker->isGranted(new Expression(
+                'has_role("ROLE_TAREA_EDIT") or has_role("ROLE_TAREA_ALL")'
+        ));
+
+        if (!$access2) {
+            $html = $this->renderView('Exception/error-acceso.html.twig', array(
+            ));
+            $response = new Response($html, Response::HTTP_FORBIDDEN);
+            return $response;
+        }*/
+        
+        /**
+         * consultamos tarea
+         */
+        $em = $this->getDoctrine()->getManager();
+        $tarea = $em->getRepository('AppBundle:Tarea')->findOneBy(['id'=>$id]);
+        
+
+        if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        }
+
+        if ($tarea->getUserId()->getId() == $user->getId()) {
+            //return new Response('tuyo');
+        } else {
+            //return new Response('no tuyo');
+            return $this->redirectToRoute('tarea', []);
+        }
+        
+
+        if ($tarea) {
+            $estado = $em->getRepository('AppBundle:EstadoTarea')->findOneBy(['id'=>$estado]);
+            $tarea->setEstadoId($estado);
+            $em->persist($tarea);
+            $em->flush();
+            
+            // traduccion flash
+            $translated = $translator->trans('flash_mensaje.editado');
+            
+            $this->get('session')->getFlashBag()->add('success', $translated);
+            return $this->redirectToRoute('tarea');
+        }
+        
     }
     
 
