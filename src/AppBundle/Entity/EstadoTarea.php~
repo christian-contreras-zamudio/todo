@@ -149,3 +149,4 @@ class EstadoTarea
         $this->updatedAt = new \DateTime();
     }
 }
+
