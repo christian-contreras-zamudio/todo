@@ -36,28 +36,4 @@ class User extends BaseUser
     private $terminos_condiciones;
     
     
-
-    /**
-     * Set terminosCondiciones
-     *
-     * @param string $terminosCondiciones
-     *
-     * @return User
-     */
-    public function setTerminosCondiciones($terminosCondiciones)
-    {
-        $this->terminos_condiciones = $terminosCondiciones;
-
-        return $this;
-    }
-
-    /**
-     * Get terminosCondiciones
-     *
-     * @return string
-     */
-    public function getTerminosCondiciones()
-    {
-        return $this->terminos_condiciones;
-    }
 }

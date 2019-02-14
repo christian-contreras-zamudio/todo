@@ -25,7 +25,7 @@
   <!-- Styles required by this views -->
 <style>
     body{
-        background-image: url({{ asset('assets/img/registro.jpg') }});
+        background-image: url({{ asset('assets/img/index.jpg') }});
          background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -48,16 +48,7 @@
             <p class="text-muted">Crea tu cuenta</p>
 
             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="icon-user"></i></span>
-              </div>
-
-              <!--<input type="text" class="form-control" placeholder="Username">-->
-              {#{ form_label(form.username, 'Username',{ 'label_Attr':{'class': 'label-control'}}) }#}
-              {{ form_widget(form.nombre, {'attr':{'class': 'form-control','placeholder': 'Nombre'}}) }}
-              <span class="text-danger">{{ form_errors(form.nombre) }}</span>
-            </div>
+            
 
 
             <div class="input-group mb-3">
@@ -81,27 +72,9 @@
               <span class="text-danger">{{ form_errors(form.email) }}</span>
             </div>
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-building-o"></i></span>
-              </div>
+            
 
-              <!--<input type="text" class="form-control" placeholder="Username">-->
-              {#{ form_label(form.username, 'Username',{ 'label_Attr':{'class': 'label-control'}}) }#}
-              {{ form_widget(form.rfc, {'attr':{'class': 'form-control','placeholder': 'Rfc'}}) }}
-              <span class="text-danger">{{ form_errors(form.rfc) }}</span>
-            </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-phone"></i></span>
-              </div>
-
-              <!--<input type="text" class="form-control" placeholder="Username">-->
-              {#{ form_label(form.username, 'Username',{ 'label_Attr':{'class': 'label-control'}}) }#}
-              {{ form_widget(form.telefono, {'attr':{'class': 'form-control','placeholder': 'Telefono'}}) }}
-              <span class="text-danger">{{ form_errors(form.telefono) }}</span>
-            </div>
+           
 
 
 
