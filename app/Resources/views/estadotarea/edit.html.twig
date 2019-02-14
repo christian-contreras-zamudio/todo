@@ -1,4 +1,4 @@
-{% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
     {{ parent() }} -  {{ 'crudMensaje.editar'|trans }} estadoTarea
@@ -68,7 +68,7 @@
 {% block javascripts %}
     <script>
     // NOTA: revisar el id conicida
-        $('#estadoTarea').addClass('row');
-        $('form[name="estadoTarea"]').addClass('col-xs-12 col-sm-12 col-md-12 col-lg-12');
+        $('#estado_tarea').addClass('row');
+        $('form[name="estado_tarea"]').addClass('col-xs-12 col-sm-12 col-md-12 col-lg-12');
     </script>
 {% endblock %}

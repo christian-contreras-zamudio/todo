@@ -1,0 +1,13 @@
+{% extends "@FOSUser/layout-realadmin.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {% if targetUrl %}
+    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+
+<a href="{{ path('homepage') }}" class="btn btn-info">Inicio</a>
+
+{% endblock fos_user_content %}

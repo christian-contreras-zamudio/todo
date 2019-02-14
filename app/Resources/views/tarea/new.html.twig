@@ -1,14 +1,14 @@
-{% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-{{ parent() }} - {{ 'crudMensaje.nuevo'|trans }} tarea
+Nueva Tarea
 {% endblock %}
 
 {% block body %}
 
 <div id="top" class="row">
     <div class="page-header">
-        <h2>{{ 'crudMensaje.nuevo'|trans }}&nbsp;tarea&nbsp;<span class="fa fa-plus-square" aria-hidden="true"></span> </h2>
+        <h2>Nueva&nbsp;tarea&nbsp;<span class="fa fa-plus-square" aria-hidden="true"></span> </h2>
     </div>
 </div>
     
@@ -26,7 +26,7 @@
          {% endfor %} 
         <br>
 </div> 
-    {#% form_theme form 'forms-layout/bootstrap_3_horizontal_layout.twig.html' %#}
+    {% form_theme form 'forms-layout/bootstrap_3_horizontal_layout.twig.html' %}
     {{ form_start(form) }}
     
   

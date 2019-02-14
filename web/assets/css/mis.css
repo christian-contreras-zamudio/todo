@@ -1,0 +1,184 @@
+.btn-avance-0 {
+  color: white;
+  background: #BDD1DB;
+  border: 1px solid #BDD1DB;
+}
+.btn-avance-0:hover,
+.btn-avance-0.disabled,
+.btn-avance-0[disabled] {
+  background-color: #A0D1DB;
+  border-color: #A0D1DB;
+}
+.btn-avance-0:active,
+.btn-avance-0.active {
+  background-color: #A0C7DB;
+  border-color: #A0C7DB;
+}
+.btn-avance-1 {
+  color: white;
+  background: #ABEEFA;
+  border: 1px solid #ABEEFA;
+}
+.btn-avance-1:hover,
+.btn-avance-1.disabled,
+.btn-avance-1[disabled] {
+  background-color: #7AEEFA;
+  border-color: #7AEEFA;
+}
+.btn-avance-1:active,
+.btn-avance-1.active {
+  background-color: #7AD7FA;
+  border-color: #7AD7FA;
+}
+.btn-avance-2 {
+  color: white;
+  background: #63C2F2;
+  border: 1px solid #63C2F2;
+}
+.btn-avance-2:hover,
+.btn-avance-2.disabled,
+.btn-avance-2[disabled] {
+  background-color: #41C2F2;
+  border-color: #41C2F2;
+}
+.btn-avance-2:active,
+.btn-avance-2.active {
+  background-color: #41ABF2;
+  border-color: #41ABF2;
+}
+.btn-avance-3 {
+  color: white;
+  background: #5CA6FE;
+  border: 1px solid #5CA6FE;
+}
+.btn-avance-3:hover,
+.btn-avance-3.disabled,
+.btn-avance-3[disabled] {
+  background-color: #49A6FE;
+  border-color: #49A6FE;
+}
+.btn-avance-3:active,
+.btn-avance-3.active {
+  background-color: #498CFE;
+  border-color: #498CFE;
+}
+.btn-avance-4 {
+  color: white;
+  background: #356899;
+  border: 1px solid #356899;
+}
+.btn-avance-4:hover,
+.btn-avance-4.disabled,
+.btn-avance-4[disabled] {
+  background-color: #1A6899;
+  border-color: #1A6899;
+}
+.btn-avance-4:active,
+.btn-avance-4.active {
+  background-color: #1A5399;
+  border-color: #1A5399;
+}
+.btn-avance-5 {
+  color: white;
+  background: #28DBA9;
+  border: 1px solid #28DBA9;
+}
+.btn-avance-5:hover,
+.btn-avance-5.disabled,
+.btn-avance-5[disabled] {
+  background-color: #11DBA9;
+  border-color: #11DBA9;
+}
+.btn-avance-5:active,
+.btn-avance-5.active {
+  background-color: #11C0A9;
+  border-color: #11C0A9;
+}
+.btn-avance-6 {
+  color: white;
+  background: #55C067;
+  border: 1px solid #55C067;
+}
+.btn-avance-6:hover,
+.btn-avance-6.disabled,
+.btn-avance-6[disabled] {
+  background-color: #38C067;
+  border-color: #38C067;
+}
+.btn-avance-6:active,
+.btn-avance-6.active {
+  background-color: #38B167;
+  border-color: #38B167;
+}
+.btn-maps-road {
+  color: white;
+  background: #8C5B3B;
+  border: 1px solid #8C5B3B;
+}
+.btn-maps-road:hover,
+.btn-maps-road.disabled,
+.btn-maps-road[disabled] {
+	color: white;
+  background-color: #8C533B;
+  border-color: #8C533B;
+}
+.btn-maps-road:active,
+.btn-maps-road.active {
+color: white;
+  background-color: #70422F;
+  border-color: #70422F;
+}
+.btn-maps-satelite {
+  color: white;
+  background: #585858;
+  border: 1px solid #585858;
+}
+.btn-maps-satelite:hover,
+.btn-maps-satelite.disabled,
+.btn-maps-satelite[disabled] {
+	color: white;
+  background-color: #4E5858;
+  border-color: #4E5858;
+}
+.btn-maps-satelite:active,
+.btn-maps-satelite.active {
+color: white;
+  background-color: #464F4F;
+  border-color: #464F4F;
+}
+.btn-maps-hibrido {
+  color: white;
+  background: #447602;
+  border: 1px solid #447602;
+}
+.btn-maps-hibrido:hover,
+.btn-maps-hibrido.disabled,
+.btn-maps-hibrido[disabled] {
+	color: white;
+  background-color: #327602;
+  border-color: #327602;
+}
+.btn-maps-hibrido:active,
+.btn-maps-hibrido.active {
+color: white;
+  background-color: #265902;
+  border-color: #265902;
+}
+.btn-maps-terreno {
+  color: white;
+  background: #DDCB5F;
+  border: 1px solid #DDCB5F;
+}
+.btn-maps-terreno:hover,
+.btn-maps-terreno.disabled,
+.btn-maps-terreno[disabled] {
+	color: white;
+  background-color: #DDCB38;
+  border-color: #DDCB38;
+}
+.btn-maps-terreno:active,
+.btn-maps-terreno.active {
+color: white;
+  background-color: #C4B432;
+  border-color: #C4B432;
+}

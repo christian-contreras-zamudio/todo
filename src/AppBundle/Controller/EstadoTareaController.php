@@ -21,7 +21,7 @@ use AppBundle\Entity\EstadoTarea;
 /**
  * EstadoTarea controller.
  *
- * @Route("/estadotarea")
+ * @Route("/admin/estado/tarea")
  */
 class EstadoTareaController extends Controller
 {

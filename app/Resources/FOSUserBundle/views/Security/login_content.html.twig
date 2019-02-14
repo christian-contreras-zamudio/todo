@@ -1,0 +1,120 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Registro Cloud Shipping">
+  <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+
+  <title>Login</title>
+  
+
+  <!-- Icons -->
+  <link href="{{ asset('assets/vendors/css/font-awesome.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendors/css/simple-line-icons.min.css') }}" rel="stylesheet">
+
+  <!-- Main styles for this application -->
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+  
+  <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
+{# <script src="{{ asset('assets/js/plugins/wow/wow.min.js') }}"></script> #}
+  <!-- Styles required by this views -->
+    <style>
+    body{
+        background-image: url({{ asset('assets/img/login-body.jpg') }});
+        background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+    </style>
+</head>
+
+<body class="app flex-row align-items-center wow animated fadeIn">
+ 
+  <div class="container" >
+    <div class="row justify-content-center">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 wow animated fadeInDown">
+        <div class="card-group">
+          <div class="card p-4">
+            <div class="card-body">
+              <h1>Iniciar sesión</h1>
+              <p class="text-muted">Iniciar sesión en su cuenta</p>
+
+        {% if error %}
+        <div class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+        
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-user"></i></span>
+                </div>
+
+                <!--<label for="username">{{ 'security.login.username'|trans }}</label>-->
+                <input type="email" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="{{ 'security.login.email'|trans }}" />
+              </div>
+
+
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-lock"></i></span>
+                </div>
+                <!--<label for="password">{{ 'security.login.password'|trans }}</label>-->
+                <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="{{ 'security.login.password'|trans }}" />
+              </div>
+
+
+              <div class="row">
+                <div class="col-6">
+                  <button id="_submit" name="_submit" type="submit" class="btn btn-primary px-4">{{ 'security.login.submit'|trans }}</button>
+                  {# <br>  
+                  <a href="{{ path('fos_user_registration_register') }}" class="btn btn-success mt-3">Registrate</a> #}
+                </div>
+                <div class="col-6 text-right">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                    <br>
+                      <a href="{{path('fos_user_resetting_request')}}" class="btn btn-link px-0">
+                      {{ 'security.login.recuperar_contrasena'|trans }}
+                    </a><br>
+
+
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-12col lg-12">
+                    <p class="lead">¿No estás registrado? <a href="{{ path('fos_user_registration_register') }}">Regístrate</a></p>
+                </div>
+                
+              </div>
+
+    
+    
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+
+</form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap and necessary plugins -->
+  <script src="{{ asset('assets/vendors/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/vendors/js/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/vendors/js/bootstrap.min.js') }}"></script>
+  {# <input type="hidden" id="urlAssets" value="{{ asset('assets/') }}">
+  <script src="{{ asset('assets/js/plugins/particles/particles.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/particles/particles.js') }}"></script> #}
+  
+</body>
+</html>

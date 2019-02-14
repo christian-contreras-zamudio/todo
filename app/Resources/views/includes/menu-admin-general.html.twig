@@ -1,0 +1,42 @@
+{% if is_granted('ROLE_ADMIN_GENERAL') or is_granted('ROLE_ADMIN_GENERAL_ALL')%}
+  
+    <li class="divider m-2"></li>
+   
+    <li class="nav-title">
+        Admin General
+    </li>
+
+    {# <li class="nav-item">
+        <a class="nav-link" href="{{ path('admin_paises_index') }}"><i class="fa fa-globe"></i> Paises </a>
+    </li> #}
+
+
+    <li class="nav-item">
+        <a class="nav-link sound-click" href="{{ path('admingeneral_tipocajaunidad') }}"><i class="fa fa-cog"></i> Tipo Caja Unidades </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link sound-click" href="{{ path('admingeneral_marcaautos') }}"><i class="fa fa-cogs"></i> Marca Autos </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link sound-click" href="{{ path('admin_tipoproveedor') }}"><i class="fa fa-cogs"></i> Tipo Proveedor </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link sound-click" href="{{ path('adminiva') }}"><i class="fa fa-cog"></i> IVA </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link sound-click" href="{{ path('admin_notificacion') }}"><i class="fa fa-cogs"></i> Notificaciones </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link sound-click" href="{{ path('admintipocarga') }}"><i class="fa fa-cog"></i> Tipo Carga</a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link sound-click" href="{{ path('go_admin_servicioscliente') }}"><i class="fa fa-cog"></i> Servicios Clientes</a>
+    </li>
+
+{% endif %}

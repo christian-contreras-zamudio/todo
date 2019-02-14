@@ -1,0 +1,193 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Real Bootstrap 4 Admin Template">
+  <meta name="author" content="Lukasz Holeczek">
+  <meta name="keyword" content="Real Bootstrap 4 Admin Template">
+  <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+
+  <title>Registro</title>
+
+  <!-- Icons -->
+  <link href="{{ asset('assets/vendors/css/font-awesome.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendors/css/simple-line-icons.min.css') }}" rel="stylesheet">
+
+  <!-- Main styles for this application -->
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+  
+  <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
+
+  <!-- Styles required by this views -->
+<style>
+    body{
+        background-image: url({{ asset('assets/img/registro.jpg') }});
+         background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+    </style>
+</head>
+
+<body class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 animated fadeInDown">
+        <div class="card mx-4">
+          <div class="card-body p-4">
+
+
+            <h1>Registro</h1>
+
+
+            <p class="text-muted">Crea tu cuenta</p>
+
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-user"></i></span>
+              </div>
+
+              <!--<input type="text" class="form-control" placeholder="Username">-->
+              {#{ form_label(form.username, 'Username',{ 'label_Attr':{'class': 'label-control'}}) }#}
+              {{ form_widget(form.nombre, {'attr':{'class': 'form-control','placeholder': 'Nombre'}}) }}
+              <span class="text-danger">{{ form_errors(form.nombre) }}</span>
+            </div>
+
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-user"></i></span>
+              </div>
+
+              <!--<input type="text" class="form-control" placeholder="Username">-->
+              {#{ form_label(form.username, 'Username',{ 'label_Attr':{'class': 'label-control'}}) }#}
+              {{ form_widget(form.username, {'attr':{'class': 'form-control','placeholder': 'Username'}}) }}
+              <span class="text-danger">{{ form_errors(form.username) }}</span>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">@</span>
+              </div>
+              <!--<input type="text" class="form-control" placeholder="Email">-->
+              {#{ form_label(form.email, 'Email', { 'label_attr': {'class': 'label-control'} }) }#}
+              {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email' } }) }}
+              <span class="text-danger">{{ form_errors(form.email) }}</span>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-building-o"></i></span>
+              </div>
+
+              <!--<input type="text" class="form-control" placeholder="Username">-->
+              {#{ form_label(form.username, 'Username',{ 'label_Attr':{'class': 'label-control'}}) }#}
+              {{ form_widget(form.rfc, {'attr':{'class': 'form-control','placeholder': 'Rfc'}}) }}
+              <span class="text-danger">{{ form_errors(form.rfc) }}</span>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+              </div>
+
+              <!--<input type="text" class="form-control" placeholder="Username">-->
+              {#{ form_label(form.username, 'Username',{ 'label_Attr':{'class': 'label-control'}}) }#}
+              {{ form_widget(form.telefono, {'attr':{'class': 'form-control','placeholder': 'Telefono'}}) }}
+              <span class="text-danger">{{ form_errors(form.telefono) }}</span>
+            </div>
+
+
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+              </div>
+              <!--<input type="password" class="form-control" placeholder="Password">-->
+              {#{ form_label(form.plainPassword.first) }#}
+                {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Contraseña' } }) }}
+                {{ form_errors(form.plainPassword.first) }}
+            </div>
+
+            <div class="input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+              </div>
+              <!--<input type="password" class="form-control" placeholder="Repeat password">-->
+              {#{ form_label(form.plainPassword.second) }#}
+                {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Repetir contraseña' } }) }}
+            </div>
+
+
+
+
+            <div class="input-group mb-4">
+              <!--<div class="input-group-prepend">
+                <span class="input-group-text"><i class="icon-lock"></i></span>
+              </div>-->
+
+              <label class="checkbox m-0 text-white">
+              {{ form_widget(form.terminosCondiciones, {'attr':{'class': 'checked-agree','placeholder': 'Terminos'}}) }}
+              Acepto los <a href="#" data-toggle="modal" data-target="#termsModal" class="linkLabel">Terminos y condiciones del servicio</a>
+              </label>
+
+
+            </div>
+
+
+
+            <button type="submit" class="btn btn-block btn-success">{{ 'registration.submit'|trans }}</button>
+            
+            {#<a href="{{path('fos_user_security_login')}}" class="btn btn-block btn-primary">Ya estoy registrado</a>#}
+            <hr>
+            <p class="lead">Ya tengo cuenta <a href="{{path('fos_user_security_login')}}">Iniciar sesión</a></p>
+
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap and necessary plugins -->
+  <script src="{{ asset('assets/vendors/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/vendors/js/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/vendors/js/bootstrap.min.js') }}"></script>
+  <!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '229048741333118');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=229048741333118&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127106925-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-127106925-1');
+</script>
+
+</body>
+</html>

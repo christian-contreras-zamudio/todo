@@ -1,0 +1,74 @@
+{#% trans_default_domain 'FOSUserBundle' %#}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Real Bootstrap 4 Admin Template">
+  <meta name="author" content="Lukasz Holeczek">
+  <meta name="keyword" content="Real Bootstrap 4 Admin Template">
+  <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+
+  <title>Registro</title>
+
+  <!-- Icons -->
+  <link href="{{ asset('assets/vendors/css/font-awesome.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendors/css/simple-line-icons.min.css') }}" rel="stylesheet">
+
+  <!-- Main styles for this application -->
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+  <!-- Styles required by this views -->
+
+</head>
+
+<body class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card-group">
+          <div class="card p-4">
+            <div class="card-body">
+                
+                <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}" class="btn btn-info"><i class="fa fa-sign-in"></i> {{ 'layout.login2'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+                
+                
+                
+             
+                {% block fos_user_content %}
+            {% endblock fos_user_content %}
+                
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap and necessary plugins -->
+  <script src="{{ asset('assets/vendors/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/vendors/js/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/vendors/js/bootstrap.min.js') }}"></script>
+</body>
+</html>
